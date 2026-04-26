@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7A890AEE-2FBF-4FC8-9418-10815B56960A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripleSpaceTranslator.Core", "src\TripleSpaceTranslator.Core\TripleSpaceTranslator.Core.csproj", "{5E3F3C6E-0E1E-45C2-9684-BA4CA3CE10B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripleSpaceTranslator.App", "src\TripleSpaceTranslator.App\TripleSpaceTranslator.App.csproj", "{86F55F25-8413-4D4B-B51E-60CA7090D9F1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{BAC5D509-A124-471E-A36D-E92560ACCFCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripleSpaceTranslator.Tests", "tests\TripleSpaceTranslator.Tests\TripleSpaceTranslator.Tests.csproj", "{3EEE2061-BCA3-4DC5-AC3C-1E8CDAB93F7A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E3F3C6E-0E1E-45C2-9684-BA4CA3CE10B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E3F3C6E-0E1E-45C2-9684-BA4CA3CE10B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E3F3C6E-0E1E-45C2-9684-BA4CA3CE10B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E3F3C6E-0E1E-45C2-9684-BA4CA3CE10B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86F55F25-8413-4D4B-B51E-60CA7090D9F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86F55F25-8413-4D4B-B51E-60CA7090D9F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86F55F25-8413-4D4B-B51E-60CA7090D9F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86F55F25-8413-4D4B-B51E-60CA7090D9F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EEE2061-BCA3-4DC5-AC3C-1E8CDAB93F7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EEE2061-BCA3-4DC5-AC3C-1E8CDAB93F7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EEE2061-BCA3-4DC5-AC3C-1E8CDAB93F7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EEE2061-BCA3-4DC5-AC3C-1E8CDAB93F7A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5E3F3C6E-0E1E-45C2-9684-BA4CA3CE10B2} = {7A890AEE-2FBF-4FC8-9418-10815B56960A}
+		{86F55F25-8413-4D4B-B51E-60CA7090D9F1} = {7A890AEE-2FBF-4FC8-9418-10815B56960A}
+		{3EEE2061-BCA3-4DC5-AC3C-1E8CDAB93F7A} = {BAC5D509-A124-471E-A36D-E92560ACCFCE}
+	EndGlobalSection
+EndGlobal
