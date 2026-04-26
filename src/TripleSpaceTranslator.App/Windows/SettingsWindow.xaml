@@ -3,13 +3,18 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="TripleSpaceTranslator 设置"
-    Width="620"
-    Height="620"
-    MinWidth="620"
-    MinHeight="620"
+    Width="680"
+    Height="760"
+    MinWidth="680"
+    MinHeight="760"
     WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Window.Resources>
+
     <Grid Margin="20">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -81,28 +86,23 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock VerticalAlignment="Center" Text="翻译服务" />
-            <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="腾讯云机器翻译（TextTranslate）" />
+            <ComboBox
+                Grid.Column="1"
+                DisplayMemberPath="DisplayName"
+                ItemsSource="{Binding AvailableProviders}"
+                SelectedItem="{Binding SelectedProvider}" />
         </Grid>
 
-        <Grid Grid.Row="5" Margin="0,0,0,12">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <TextBlock VerticalAlignment="Center" Text="Region" />
-            <TextBox Grid.Column="1" Text="{Binding Region, UpdateSourceTrigger=PropertyChanged}" />
-        </Grid>
+        <StackPanel Grid.Row="5" Margin="120,0,0,16">
+            <TextBlock Foreground="Gray" Text="{Binding ProviderDescription}" TextWrapping="Wrap" />
+            <CheckBox
+                Margin="0,10,0,0"
+                Content="显示高级设置"
+                IsChecked="{Binding ShowAdvancedProviderSettings}"
+                Visibility="{Binding ShowAdvancedProviderSettingsToggle, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        </StackPanel>
 
         <Grid Grid.Row="6" Margin="0,0,0,12">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <TextBlock VerticalAlignment="Center" Text="ProjectId" />
-            <TextBox Grid.Column="1" Text="{Binding ProjectId, UpdateSourceTrigger=PropertyChanged}" />
-        </Grid>
-
-        <Grid Grid.Row="7" Margin="0,0,0,12">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120" />
                 <ColumnDefinition Width="*" />
@@ -111,7 +111,31 @@
             <TextBox Grid.Column="1" Text="{Binding TimeoutSeconds, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
 
-        <Grid Grid.Row="8" Margin="0,0,0,12">
+        <Grid
+            Grid.Row="7"
+            Margin="0,0,0,12"
+            Visibility="{Binding ShowRegionSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock VerticalAlignment="Center" Text="Region" />
+            <TextBox Grid.Column="1" Text="{Binding Region, UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+
+        <Grid
+            Grid.Row="8"
+            Margin="0,0,0,12"
+            Visibility="{Binding ShowProjectIdSettings, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock VerticalAlignment="Center" Text="ProjectId" />
+            <TextBox Grid.Column="1" Text="{Binding ProjectId, UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+
+        <Grid Grid.Row="9" Margin="0,0,0,12">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -121,13 +145,17 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock VerticalAlignment="Center" Text="SecretId" />
+            <TextBlock VerticalAlignment="Center" Text="{Binding CredentialIdLabel}" />
             <TextBox
                 Grid.Column="1"
                 FontFamily="Consolas"
                 Text="{Binding SecretId, UpdateSourceTrigger=PropertyChanged}" />
 
-            <TextBlock Grid.Row="1" Margin="0,12,0,0" VerticalAlignment="Center" Text="SecretKey" />
+            <TextBlock
+                Grid.Row="1"
+                Margin="0,12,0,0"
+                VerticalAlignment="Center"
+                Text="{Binding CredentialKeyLabel}" />
             <TextBox
                 Grid.Row="1"
                 Grid.Column="1"
@@ -136,7 +164,7 @@
                 Text="{Binding SecretKey, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
 
-        <Grid Grid.Row="9">
+        <Grid Grid.Row="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -153,7 +181,7 @@
                 Grid.Column="1"
                 Margin="0,0,12,0"
                 VerticalAlignment="Center"
-                Text="会直接使用当前界面里的 SecretId、SecretKey、Region 和目标语言。"
+                Text="{Binding ProviderConnectionTestHint}"
                 TextWrapping="Wrap" />
             <Button
                 Grid.Column="2"
@@ -175,12 +203,12 @@
                 Grid.ColumnSpan="2"
                 Margin="0,8,0,0"
                 Foreground="Gray"
-                Text="说明：不需要先保存，测试连接会直接使用当前填写的配置。"
+                Text="不需要先保存，测试连接会直接使用当前界面里的配置。"
                 TextWrapping="Wrap" />
         </Grid>
 
         <StackPanel
-            Grid.Row="10"
+            Grid.Row="11"
             Margin="0,20,0,0"
             HorizontalAlignment="Right"
             Orientation="Horizontal">

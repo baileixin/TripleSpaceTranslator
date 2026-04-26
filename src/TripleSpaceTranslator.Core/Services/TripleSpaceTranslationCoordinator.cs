@@ -1,5 +1,6 @@
 using TripleSpaceTranslator.Core.Interfaces;
 using TripleSpaceTranslator.Core.Models;
+using TripleSpaceTranslator.Core.Utilities;
 
 namespace TripleSpaceTranslator.Core.Services;
 
@@ -25,7 +26,8 @@ public sealed class TripleSpaceTranslationCoordinator
             string.IsNullOrWhiteSpace(settings.ProviderConfig.SecretKey))
         {
             _logger.Log("translate", "Translation aborted because credentials were missing.");
-            return TranslationExecutionResult.Failure("请先在设置里填写腾讯云 SecretId 和 SecretKey。");
+            return TranslationExecutionResult.Failure(
+                TranslationProviderCatalog.GetMissingCredentialMessage(settings.ProviderConfig.ProviderType));
         }
 
         var accessResult = _focusedTextAccessor.GetFocusedText();

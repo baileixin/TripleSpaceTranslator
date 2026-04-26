@@ -2,6 +2,44 @@ namespace TripleSpaceTranslator.Core.Utilities;
 
 public static class SourceLanguageHeuristics
 {
+    public static string DetectBaiduLanguageCode(string text)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+        {
+            return "en";
+        }
+
+        foreach (var character in text)
+        {
+            if (IsJapanese(character))
+            {
+                return "jp";
+            }
+
+            if (IsKorean(character))
+            {
+                return "kor";
+            }
+
+            if (IsChinese(character))
+            {
+                return "zh";
+            }
+
+            if (IsCyrillic(character))
+            {
+                return "ru";
+            }
+
+            if (IsArabic(character))
+            {
+                return "ara";
+            }
+        }
+
+        return "en";
+    }
+
     public static string DetectTencentLanguageCode(string text)
     {
         if (string.IsNullOrWhiteSpace(text))

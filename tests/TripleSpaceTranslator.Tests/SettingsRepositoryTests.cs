@@ -51,6 +51,7 @@ public sealed class SettingsRepositoryTests : IDisposable
         Assert.False(loaded.TriggerHotkey.Alt);
         Assert.True(loaded.TriggerHotkey.Shift);
         Assert.Equal(0x45, loaded.TriggerHotkey.KeyCode);
+        Assert.Equal(TranslationProviderType.TencentMachineTranslation, loaded.ProviderConfig.ProviderType);
         Assert.Equal("AKIDEXAMPLE", loaded.ProviderConfig.SecretId);
         Assert.Equal("SECRETEXAMPLE", loaded.ProviderConfig.SecretKey);
         Assert.Equal("ap-shanghai", loaded.ProviderConfig.Region);

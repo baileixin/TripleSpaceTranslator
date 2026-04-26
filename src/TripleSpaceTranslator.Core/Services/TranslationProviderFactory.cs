@@ -18,6 +18,7 @@ public sealed class TranslationProviderFactory : ITranslationProviderFactory
         return providerConfig.ProviderType switch
         {
             TranslationProviderType.TencentMachineTranslation => new TencentMachineTranslationProvider(_httpClient, providerConfig),
+            TranslationProviderType.BaiduGeneralTextTranslation => new BaiduGeneralTextTranslationProvider(_httpClient, providerConfig),
             _ => throw new NotSupportedException($"Unsupported provider type: {providerConfig.ProviderType}")
         };
     }
